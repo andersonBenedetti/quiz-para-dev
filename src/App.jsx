@@ -1,15 +1,20 @@
 import Welcome from './components/Welcome';
-import {useContext} from 'react';
+import Questions from './components/Questions';
+import {useContext, useEffect} from 'react';
 import {QuizContext} from './context/quiz';
 
 export default function App() {
-  const quizState = useContext(QuizContext);
-  console.log(quizState);
+  const [quizState, dispatch] = useContext(QuizContext);
+
+  useEffect(() => {
+    dispatch({type: 'REORDER_QUESTIONS'});
+  }, []);
 
   return (
     <div>
       <h1>Quiz de Programação</h1>
-      <Welcome />
+      {quizState.gameStage === 'Start' && <Welcome />}
+      {quizState.gameStage === 'Playing' && <Questions />}
     </div>
   );
 }
