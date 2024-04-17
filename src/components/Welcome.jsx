@@ -1,5 +1,7 @@
 import styles from './Welcome.module.css';
+
 import Quiz from '../assets/quiz.svg';
+
 import {useContext} from 'react';
 import {QuizContext} from '../context/quiz';
 
