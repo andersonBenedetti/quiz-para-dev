@@ -1,3 +1,4 @@
+import './App.css';
 import Welcome from './components/Welcome';
 import Questions from './components/Questions';
 import {useContext, useEffect} from 'react';
@@ -11,7 +12,7 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <h1>Quiz de Programação</h1>
       {quizState.gameStage === 'Start' && <Welcome />}
       {quizState.gameStage === 'Playing' && <Questions />}

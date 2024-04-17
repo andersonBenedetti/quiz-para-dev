@@ -7,7 +7,7 @@ export default function Questions() {
   const currentQuestions = quizState.questions[quizState.currentQuestions];
 
   return (
-    <div className={styles}>
+    <div className={styles.question}>
       <p>
         Pergunta {quizState.currentQuestions + 1} de
         {quizState.questions.length}
