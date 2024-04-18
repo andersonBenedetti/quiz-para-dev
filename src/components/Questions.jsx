@@ -9,6 +9,13 @@ export default function Questions() {
   const [quizState, dispatch] = useContext(QuizContext);
   const currentQuestions = quizState.questions[quizState.currentQuestions];
 
+  const OnSelectOption = (option) => {
+    dispatch({
+      type: 'CHECK_ANSWER',
+      payload: {answer: currentQuestions.answer, option},
+    });
+  };
+
   return (
     <div className={styles.question}>
       <p>
@@ -18,12 +25,19 @@ export default function Questions() {
       <h2>{currentQuestions.question}</h2>
       <div>
         {currentQuestions.options.map((option) => (
-          <Options option={option} key={option} />
+          <Options
+            option={option}
+            key={option}
+            answer={currentQuestions.answer}
+            selectOption={() => OnSelectOption(option)}
+          />
         ))}
       </div>
-      <button onClick={() => dispatch({type: 'CHANGE_QUESTION'})}>
-        Continuar
-      </button>
+      {quizState.answerSelected && (
+        <button onClick={() => dispatch({type: 'CHANGE_QUESTION'})}>
+          Continuar
+        </button>
+      )}
     </div>
   );
 }
