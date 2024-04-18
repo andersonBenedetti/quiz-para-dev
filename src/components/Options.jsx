@@ -7,7 +7,12 @@ export default function Options({option, selectOption, answer}) {
   const [quizState, dispatch] = useContext(QuizContext);
 
   return (
-    <div className={styles.options} onClick={() => selectOption()}>
+    <div
+      className={`${styles.options} ${
+        quizState.answerSelected && option === answer ? styles.correct : ''
+      } ${quizState.answerSelected && option !== answer ? styles.wrong : ''}`}
+      onClick={() => selectOption()}
+    >
       <p>{option}</p>
     </div>
   );
