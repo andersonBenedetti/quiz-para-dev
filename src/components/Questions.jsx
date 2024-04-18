@@ -3,6 +3,8 @@ import styles from './Questions.module.css';
 import {useContext} from 'react';
 import {QuizContext} from '../context/quiz';
 
+import Options from './Options';
+
 export default function Questions() {
   const [quizState, dispatch] = useContext(QuizContext);
   const currentQuestions = quizState.questions[quizState.currentQuestions];
@@ -15,7 +17,9 @@ export default function Questions() {
       </p>
       <h2>{currentQuestions.question}</h2>
       <div>
-        <p>Opções</p>
+        {currentQuestions.options.map((option) => (
+          <Options option={option} key={option} />
+        ))}
       </div>
       <button onClick={() => dispatch({type: 'CHANGE_QUESTION'})}>
         Continuar
